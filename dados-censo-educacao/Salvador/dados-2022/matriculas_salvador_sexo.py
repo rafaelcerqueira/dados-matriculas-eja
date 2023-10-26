@@ -1,7 +1,12 @@
 import pandas as pd
 
 #lê o arquivo csv 'matriculas-sexo-salvador.csv' e armazene-o em um dataframe
-df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-sexo-salvador.csv')
+'''df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-sexo-salvador.csv')
+'''
+
+from leitor_de_dados import LeitorDeDados
+df = pd.DataFrame()
+df = LeitorDeDados(df).get_dados_sexo_csv()
 
 class MatriculasSalvadorSexo:
     
@@ -125,8 +130,7 @@ class MatriculasSalvadorSexo:
         return total_matriculas_por_sexo_porcentagem_total
 
 
-
-
-
 matriculas = MatriculasSalvadorSexo(df=df)
+
+print(matriculas.get_matriculas_por_sexo_porcentagem_total())
 

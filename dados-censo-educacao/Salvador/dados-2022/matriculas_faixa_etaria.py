@@ -1,6 +1,13 @@
+# -*- coding: utf-8 -*-
 import pandas as pd
 
-df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-faixa_etaria-salvador.csv', sep=';')
+#df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-faixa_etaria-salvador.csv', sep=';')
+
+#acessa a classe LeitorDeDados e chama o método get_dados_faixa_etaria_csv() para obter o dataframe.
+
+from leitor_de_dados import LeitorDeDados
+df = pd.DataFrame()
+df = LeitorDeDados(df).get_dados_faixa_etaria_csv()
 
 class MatriculasSalvadorFaixaEtaria:
     
@@ -109,3 +116,4 @@ print('--------------------------')
 print("Todal de matrículas por dependência administrativa:", matriculas_faixa_etaria.get_total_matriculas_faixa_etaria())
 print('--------------------------')
 print("Porcentagem das matrículas por faixas etárias em cada dependência administrativa: ", matriculas_faixa_etaria.get_total_matriculas_faixa_etaria_porcentagem())
+

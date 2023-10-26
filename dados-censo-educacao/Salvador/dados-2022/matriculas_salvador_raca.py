@@ -1,6 +1,13 @@
+# -*- coding: utf-8 -*-
+
 import pandas as pd
 
-df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-raca-cor-salvador.csv', sep=';')
+'''df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-raca-cor-salvador.csv', sep=';')
+'''
+
+from leitor_de_dados import LeitorDeDados
+df = pd.DataFrame()
+df = LeitorDeDados(df).get_dados_raca_cor_csv()
 
 class MatriculasSalvadorRaca:
     
