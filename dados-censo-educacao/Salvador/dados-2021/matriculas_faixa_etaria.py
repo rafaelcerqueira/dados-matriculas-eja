@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
 import pandas as pd
-
-#df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-faixa_etaria-salvador.csv', sep=';')
-
-#acessa a classe LeitorDeDados e chama o método get_dados_faixa_etaria_csv() para obter o dataframe.
 
 from leitor_de_dados import LeitorDeDados
 df = pd.DataFrame()
@@ -13,15 +8,12 @@ class MatriculasSalvadorFaixaEtaria:
     
     def __init__(self, df):
         self.df = df
-    
-    
-    #a função retorna um dicionário com a faixa etária com chave e 'Matrículas' como valor.
-    def get_matriculas_faixa_etaria(self):
         
-        #Dicionários aninhados.
+    def get_matriculas_faixa_etaria(self):
+            
         matriculas_faixa_etaria = {
             'Estadual': {
-               
+            
             },
             'Municipal': {
                 
@@ -34,7 +26,6 @@ class MatriculasSalvadorFaixaEtaria:
             }
         }
         
-        #o loop percorre o dataframe e adiciona os valores as chaves em cada dicionário equivalente.
         for c in range(len(self.df)):
             if self.df['Categoria 2'][c] == 'Estadual':
                 matriculas_faixa_etaria['Estadual'][self.df['Categoria 1'][c]] = self.df['Matrículas'][c]
@@ -47,7 +38,6 @@ class MatriculasSalvadorFaixaEtaria:
                 
         return matriculas_faixa_etaria
     
-    #a função que retorna o total de matrículas por faixa etária em cada dependência administrativa.
     def get_total_matriculas_faixa_etaria(self):
         total_matriculas_faixa_etaria = {
             'Estadual': 0,
@@ -68,7 +58,6 @@ class MatriculasSalvadorFaixaEtaria:
                 
         return total_matriculas_faixa_etaria
     
-    #chama o método get_matriculas_faixa_etaria() e retorna a porcentagem de cada faixa etária em cada dependência administrativa.
     def get_total_matriculas_faixa_etaria_porcentagem(self):
         matriculas_faixa_etaria = self.get_matriculas_faixa_etaria()
         total_matriculas_faixa_etaria = self.get_total_matriculas_faixa_etaria()
@@ -112,15 +101,12 @@ class MatriculasSalvadorFaixaEtaria:
             
             
         return total_matriculas_faixa_etaria_porcentagem
-    
+        
 
-#instancia a classe
 matriculas_faixa_etaria = MatriculasSalvadorFaixaEtaria(df)
 
-#imprime os resultados
-print("Matrículas por faixa etária em cada dependência administrativa:", matriculas_faixa_etaria.get_matriculas_faixa_etaria())
-print('--------------------------')
-print("Todal de matrículas por dependência administrativa:", matriculas_faixa_etaria.get_total_matriculas_faixa_etaria())
-print('--------------------------')
-print("Porcentagem das matrículas por faixas etárias em cada dependência administrativa: ", matriculas_faixa_etaria.get_total_matriculas_faixa_etaria_porcentagem())
-
+print(matriculas_faixa_etaria.get_matriculas_faixa_etaria())
+print('-----------')
+print(matriculas_faixa_etaria.get_total_matriculas_faixa_etaria())
+print('-----------')
+print(matriculas_faixa_etaria.get_total_matriculas_faixa_etaria_porcentagem())
