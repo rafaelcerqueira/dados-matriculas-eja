@@ -18,7 +18,7 @@ class LeitorDeDados:
     
     def get_dados_sexo_csv(self):
         
-        df_sexo = pd.read_csv('/home/lasid-rafael/Documentos/educacao/dados-matriculas-eja/dados-censo-educacao/Salvador/dados-2021/matriculas-sexo-salvador.csv')
+        df_sexo = pd.read_csv('/home/lasid-rafael/Documentos/educacao/dados-matriculas-eja/dados-censo-educacao/Salvador/dados-2021/matriculas-sexo-salvador.csv' , sep=';')
         
         return df_sexo
     
