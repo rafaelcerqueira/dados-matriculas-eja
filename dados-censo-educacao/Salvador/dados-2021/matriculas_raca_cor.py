@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
 import pandas as pd
-
-'''df = pd.read_csv('/home/rafael/Documents/EJA/dados-censo-educacao/Salvador/dados-2022/matriculas-raca-cor-salvador.csv', sep=';')
-'''
 
 from leitor_de_dados import LeitorDeDados
 df = pd.DataFrame()
@@ -11,9 +6,9 @@ df = LeitorDeDados(df).get_dados_raca_cor_csv()
 
 class MatriculasSalvadorRaca:
     
-    def __init__(self, df):
+    def __init__(self):
         self.df = df
-    
+
     def get_matriculas_dependencia_administrativa(self):
         
         dependencia_administrativa = {
@@ -48,14 +43,12 @@ class MatriculasSalvadorRaca:
                 'Amarela': 0,
                 'Indígena': 0,
                 'Não declarada': 0
-            }     
+            }
             
         }
         
-        #cria um loop que percorre o dataframe
         for c in range(len(self.df)):
             
-        #para cada linha do dataframe, verifica se a 'Categoria 2' é igual a 'Estadual', 'Municipal', 'Privada' ou 'Federal'
             if self.df['Categoria 2'][c] == 'Estadual':
                 if self.df['Categoria 1'][c] == 'Branca':
                     dependencia_administrativa['Estadual']['Branca'] += self.df['Matrículas'][c]
@@ -69,7 +62,7 @@ class MatriculasSalvadorRaca:
                     dependencia_administrativa['Estadual']['Indígena'] += self.df['Matrículas'][c]
                 elif self.df['Categoria 1'][c] == 'Não declarada':
                     dependencia_administrativa['Estadual']['Não declarada'] += self.df['Matrículas'][c]
-                
+            
             elif self.df['Categoria 2'][c] == 'Municipal':
                 if self.df['Categoria 1'][c] == 'Branca':
                     dependencia_administrativa['Municipal']['Branca'] += self.df['Matrículas'][c]
@@ -83,7 +76,7 @@ class MatriculasSalvadorRaca:
                     dependencia_administrativa['Municipal']['Indígena'] += self.df['Matrículas'][c]
                 elif self.df['Categoria 1'][c] == 'Não declarada':
                     dependencia_administrativa['Municipal']['Não declarada'] += self.df['Matrículas'][c]
-                    
+            
             elif self.df['Categoria 2'][c] == 'Privada':
                 if self.df['Categoria 1'][c] == 'Branca':
                     dependencia_administrativa['Privada']['Branca'] += self.df['Matrículas'][c]
@@ -111,11 +104,9 @@ class MatriculasSalvadorRaca:
                     dependencia_administrativa['Federal']['Indígena'] += self.df['Matrículas'][c]
                 elif self.df['Categoria 1'][c] == 'Não declarada':
                     dependencia_administrativa['Federal']['Não declarada'] += self.df['Matrículas'][c]
-                    
+    
         return dependencia_administrativa
     
-    
-    #total de matriculas por raça/cor.
     def get_total_matriculas_por_raca(self):
         matriculas_por_raca = {
             'Branca': 0,
@@ -156,21 +147,8 @@ class MatriculasSalvadorRaca:
             matriculas_por_raca_porcentagem[c] = str(matriculas_por_raca_porcentagem[c]) + '%'
             
         return matriculas_por_raca_porcentagem
-    
-   
-'''          
 
-#instanciando a classe
 
-#imprima matriculas_raca_categoria_2
-print("Matrículas por raça em cada dependência administrativa:", matriculas.get_matriculas_dependencia_administrativa())
-print('------------------------')
-print("Total de matrículas por raça:", matriculas.get_total_matriculas_por_raca())
-print('------------------------')
-print("Porcentagem de matrículas por raça:", matriculas.get_matriculas_raca_porcentagem_total())
-print('*************************')
-'''
 matriculas = MatriculasSalvadorRaca(df=df)
 
-print("Porcentagem de matrículas por raça:", matriculas.get_matriculas_raca_porcentagem_total())
-
+             

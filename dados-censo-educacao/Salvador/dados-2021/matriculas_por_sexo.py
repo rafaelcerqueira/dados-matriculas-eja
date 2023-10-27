@@ -123,4 +123,4 @@ class MatriculasSalvadorSexo:
 
 matriculas = MatriculasSalvadorSexo(df)
 print(matriculas.get_total_matriculas_por_sexo())
-                    
+
