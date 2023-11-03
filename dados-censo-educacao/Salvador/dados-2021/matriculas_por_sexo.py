@@ -48,6 +48,7 @@ class MatriculasSalvadorSexo:
                     matriculas_masculino['Federal'] += self.df['Matrículas'][c]
         
         return {'Feminino': matriculas_feminino, 'Masculino': matriculas_masculino}
+    
     def get_total_matriculas_por_sexo(self):
         total_matriculas_por_sexo = {
             'Feminino': 0,
