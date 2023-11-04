@@ -117,6 +117,7 @@ class MatriculasSalvadorRaca:
     
     #total de matriculas por raça/cor.
     def get_total_matriculas_por_raca(self):
+        
         matriculas_por_raca = {
             'Branca': 0,
             'Preta': 0,
@@ -142,6 +143,57 @@ class MatriculasSalvadorRaca:
                 
         return matriculas_por_raca
     
+    #percentual de matrículas por raça/cor por dependência administrativa.
+    def get_porcentagem_matriculas_por_raca_e_dependencia_administrativa(self):
+            
+        dependencia_administrativa = self.get_matriculas_dependencia_administrativa()
+        matriculas_por_raca_por_dependencia_administrativa = {
+            'Estadual': {
+                'Branca': 0,
+                'Preta': 0,
+                'Parda': 0,
+                'Amarela': 0,
+                'Indígena': 0,
+                'Não declarada': 0
+            },
+            'Municipal': {
+                'Branca': 0,
+                'Preta': 0,
+                'Parda': 0,
+                'Amarela': 0,
+                'Indígena': 0,
+                'Não declarada': 0
+            },
+            'Privada': {
+                'Branca': 0,
+                'Preta': 0,
+                'Parda': 0,
+                'Amarela': 0,
+                'Indígena': 0,
+                'Não declarada': 0
+            },
+            'Federal': {
+                'Branca': 0,
+                'Preta': 0,
+                'Parda': 0,
+                'Amarela': 0,
+                'Indígena': 0,
+                'Não declarada': 0
+            }     
+            
+        }
+        
+        for c in dependencia_administrativa:
+            for c2 in dependencia_administrativa[c]:
+                matriculas_por_raca_por_dependencia_administrativa[c][c2] = round((dependencia_administrativa[c][c2] / sum(dependencia_administrativa[c].values())) * 100, 2)
+                
+        #adiciona o simbolo de porcentagem ao final de cada valor.
+        for c in matriculas_por_raca_por_dependencia_administrativa:
+            for c2 in matriculas_por_raca_por_dependencia_administrativa[c]:
+                matriculas_por_raca_por_dependencia_administrativa[c][c2] = str(matriculas_por_raca_por_dependencia_administrativa[c][c2]) + '%'
+                
+        return matriculas_por_raca_por_dependencia_administrativa
+    
     #percentual total de matrículas por raça/cor.
     def get_matriculas_raca_porcentagem_total(self):
         matriculas_por_raca_porcentagem = {}
@@ -158,19 +210,8 @@ class MatriculasSalvadorRaca:
         return matriculas_por_raca_porcentagem
     
    
-'''          
 
-#instanciando a classe
-
-#imprima matriculas_raca_categoria_2
-print("Matrículas por raça em cada dependência administrativa:", matriculas.get_matriculas_dependencia_administrativa())
-print('------------------------')
-print("Total de matrículas por raça:", matriculas.get_total_matriculas_por_raca())
-print('------------------------')
-print("Porcentagem de matrículas por raça:", matriculas.get_matriculas_raca_porcentagem_total())
-print('*************************')
-'''
 matriculas = MatriculasSalvadorRaca(df=df)
 
-print("Porcentagem de matrículas por raça:", matriculas.get_matriculas_raca_porcentagem_total())
+print("Porcentagem de matrículas por raça:", matriculas.get_porcentagem_matriculas_por_raca_e_dependencia_administrativa())
 
