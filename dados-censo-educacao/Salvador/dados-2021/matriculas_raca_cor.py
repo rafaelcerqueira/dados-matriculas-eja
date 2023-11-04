@@ -147,6 +147,39 @@ class MatriculasSalvadorRaca:
             matriculas_por_raca_porcentagem[c] = str(matriculas_por_raca_porcentagem[c]) + '%'
             
         return matriculas_por_raca_porcentagem
+    
+    #percentual de matrículas por raça/cor por dependência administrativa.
+    def get_matriculas_raca_porcentagem_dependencia_administrativa(self):
+        matriculas_por_raca_porcentagem = {}
+        matriculas_por_raca = self.get_matriculas_dependencia_administrativa()
+        
+        for c in matriculas_por_raca:
+            matriculas_por_raca_porcentagem[c] = {}
+            
+            for c2 in matriculas_por_raca[c]:
+                matriculas_por_raca_porcentagem[c][c2] = round((matriculas_por_raca[c][c2] / sum(matriculas_por_raca[c].values())) * 100, 2)
+                
+        #adiciona o simbolo de porcentagem ao final de cada valor.
+        for c in matriculas_por_raca_porcentagem:
+            for c2 in matriculas_por_raca_porcentagem[c]:
+                matriculas_por_raca_porcentagem[c][c2] = str(matriculas_por_raca_porcentagem[c][c2]) + '%'
+                
+        return matriculas_por_raca_porcentagem
+    
+    #percentual total de matrículas por raça/cor.
+    def get_matriculas_raca_porcentagem_total(self):
+        matriculas_por_raca_porcentagem = {}
+        matriculas_por_raca = self.get_total_matriculas_por_raca()
+        total_matriculas = sum(matriculas_por_raca.values())
+        
+        for c in matriculas_por_raca:
+            matriculas_por_raca_porcentagem[c] = round((matriculas_por_raca[c] / total_matriculas) * 100, 2)
+            
+        #adiciona o simbolo de porcentagem ao final de cada valor.
+        for c in matriculas_por_raca_porcentagem:
+            matriculas_por_raca_porcentagem[c] = str(matriculas_por_raca_porcentagem[c]) + '%'
+            
+        return matriculas_por_raca_porcentagem
 
 
 matriculas = MatriculasSalvadorRaca(df=df)
