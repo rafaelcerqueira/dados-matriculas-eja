@@ -6,7 +6,7 @@ df = LeitorDeDados(df).get_dados_raca_cor_csv()
 
 class MatriculasSalvadorRaca:
     
-    def __init__(self):
+    def __init__(self, df):
         self.df = df
 
     def get_matriculas_dependencia_administrativa(self):
@@ -151,4 +151,4 @@ class MatriculasSalvadorRaca:
 
 matriculas = MatriculasSalvadorRaca(df=df)
 
-             
+print(matriculas.get_matriculas_raca_porcentagem_total())

@@ -17,7 +17,7 @@ class LeitorDeDados:
     
     def get_dados_raca_cor_csv(self):
 
-        df_raca = pd.read_csv(url + '/dados-2020/matriculas-raca-cor-salvador.csv', sep=';')
+        df_raca = pd.read_csv(url + '/dados-2020/matriculas-cor_raca-salvador.csv', sep=';')
         
         return df_raca
     
