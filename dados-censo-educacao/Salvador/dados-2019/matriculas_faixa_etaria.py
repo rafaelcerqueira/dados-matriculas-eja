@@ -6,11 +6,11 @@ df = LeitorDeDados(df).get_dados_faixa_etaria_csv()
 
 class MatriculasSalvadorFaixaEtaria:
     
-    def __init__ (self, df):
+    def __init__(self, df):
         self.df = df
-        
+    
     def get_matriculas_faixa_etaria(self):
-            
+        
         matriculas_faixa_etaria = {
             'Estadual': {
             
@@ -79,7 +79,7 @@ class MatriculasSalvadorFaixaEtaria:
         
         for c in matriculas_faixa_etaria['Estadual']:
             total_matriculas_faixa_etaria_porcentagem['Estadual'][c] = round((matriculas_faixa_etaria['Estadual'][c] / total_matriculas_faixa_etaria['Estadual']) * 100, 2)
-
+        
         for c in matriculas_faixa_etaria['Municipal']:
             total_matriculas_faixa_etaria_porcentagem['Municipal'][c] = round((matriculas_faixa_etaria['Municipal'][c] / total_matriculas_faixa_etaria['Municipal']) * 100, 2)
         
@@ -92,10 +92,13 @@ class MatriculasSalvadorFaixaEtaria:
         #adiciona símbolo de porcentagem
         for c in total_matriculas_faixa_etaria_porcentagem['Estadual']:
             total_matriculas_faixa_etaria_porcentagem['Estadual'][c] = str(total_matriculas_faixa_etaria_porcentagem['Estadual'][c]) + '%'
+        
         for c in total_matriculas_faixa_etaria_porcentagem['Municipal']:
             total_matriculas_faixa_etaria_porcentagem['Municipal'][c] = str(total_matriculas_faixa_etaria_porcentagem['Municipal'][c]) + '%'
+        
         for c in total_matriculas_faixa_etaria_porcentagem['Privada']:
             total_matriculas_faixa_etaria_porcentagem['Privada'][c] = str(total_matriculas_faixa_etaria_porcentagem['Privada'][c]) + '%'
+        
         for c in total_matriculas_faixa_etaria_porcentagem['Federal']:
             total_matriculas_faixa_etaria_porcentagem['Federal'][c] = str(total_matriculas_faixa_etaria_porcentagem['Federal'][c]) + '%'
         
@@ -148,8 +151,10 @@ class MatriculasSalvadorFaixaEtaria:
             total_matriculas_faixa_etaria_geral_porcentagem[c] = str(total_matriculas_faixa_etaria_geral_porcentagem[c]) + '%'
         
         return total_matriculas_faixa_etaria_geral_porcentagem
-    
-    
+        
+            
+
+
 matriculas = MatriculasSalvadorFaixaEtaria(df)
 
 print(matriculas.get_total_matriculas_faixa_etaria_geral_porcentagem())
