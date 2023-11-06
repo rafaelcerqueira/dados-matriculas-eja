@@ -66,10 +66,10 @@ class MatriculasSalvadorSexo:
     
     def get_matriculas_por_sexo_por_dependencia_administrativa(self):
         
-        #acessa o dicionario matriculas_feminino e matriculas_masculino em get_matriculas_por_sexo()
+        # acessa o dicionario matriculas_feminino e matriculas_masculino em get_matriculas_por_sexo()
         matriculas_por_sexo = self.get_matriculas_por_sexo()
         
-        #cria um dicionario para armazenar as matriculas de cada sexo por dependencia administrativa
+        # cria um dicionario para armazenar as matriculas de cada sexo por dependencia administrativa
         matriculas_por_sexo_por_dependencia_administrativa = {
             'Estadual': {
                 'Feminino': 0,
@@ -89,8 +89,8 @@ class MatriculasSalvadorSexo:
             }
         }
         
-       #percorre o dicionario matriculas_feminino e verifica se a categoria é estadual, municipal, privada ou federal
-         #se for estadual, municipal, privada ou federal, soma a quantidade de matriculas de cada sexo
+       # percorre o dicionario matriculas_feminino e verifica se a categoria é estadual, municipal, privada ou federal
+         # se for estadual, municipal, privada ou federal, soma a quantidade de matriculas de cada sexo
         for sexo in matriculas_por_sexo:
             for categoria in matriculas_por_sexo[sexo]:
                 if categoria == 'Estadual':
@@ -107,10 +107,10 @@ class MatriculasSalvadorSexo:
     
     def get_percentual_por_sexo_dependencia_administrativa(self):
         
-        #acessa o dicionario matriculas_por_sexo_por_dependencia_administrativa
+        # acessa o dicionario matriculas_por_sexo_por_dependencia_administrativa
         matriculas_por_sexo_por_dependencia_administrativa = self.get_matriculas_por_sexo_por_dependencia_administrativa()
         
-        #cria um dicionario para armazenar o percentual de matriculas de cada sexo por dependencia administrativa
+        # cria um dicionario para armazenar o percentual de matriculas de cada sexo por dependencia administrativa
         percentual_por_sexo_dependencia_administrativa = {
             'Estadual': {
                 'Feminino': 0,
@@ -130,15 +130,15 @@ class MatriculasSalvadorSexo:
             }
         }
 
-        #percorre o dicionario matriculas_por_sexo_por_dependencia_administrativa
+        # percorre o dicionario matriculas_por_sexo_por_dependencia_administrativa
         for categoria in matriculas_por_sexo_por_dependencia_administrativa:
-            #soma a quantidade de matriculas de cada sexo
+            # soma a quantidade de matriculas de cada sexo
             total = matriculas_por_sexo_por_dependencia_administrativa[categoria]['Feminino'] + matriculas_por_sexo_por_dependencia_administrativa[categoria]['Masculino']
-            #calcula o total de matriculas feminino, divide pelo total de matriculas e multiplica por 100
+            # calcula o total de matriculas feminino, divide pelo total de matriculas e multiplica por 100
             percentual_por_sexo_dependencia_administrativa[categoria]['Feminino'] = round((matriculas_por_sexo_por_dependencia_administrativa[categoria]['Feminino'] / total) * 100, 2)
-            #calcula o total de matriculas masculino, divide pelo total de matriculas e multiplica por 100
+            # calcula o total de matriculas masculino, divide pelo total de matriculas e multiplica por 100
             percentual_por_sexo_dependencia_administrativa[categoria]['Masculino'] = round((matriculas_por_sexo_por_dependencia_administrativa[categoria]['Masculino'] / total) * 100, 2)
-            #adiciona os valores em percentual_por_sexo_dependencia_administrativa
+            # adiciona os valores em percentual_por_sexo_dependencia_administrativa
             percentual_por_sexo_dependencia_administrativa[categoria]['Feminino'] = str(percentual_por_sexo_dependencia_administrativa[categoria]['Feminino']) + '%'
             percentual_por_sexo_dependencia_administrativa[categoria]['Masculino'] = str(percentual_por_sexo_dependencia_administrativa[categoria]['Masculino']) + '%'            
                 

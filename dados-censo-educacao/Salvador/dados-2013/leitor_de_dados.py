@@ -1,6 +1,6 @@
 import pandas as pd
 
-url = url = 'https://raw.githubusercontent.com/rafaelcerqueira/dados-eja-matriculas/main/Salvador'
+url = 'https://raw.githubusercontent.com/rafaelcerqueira/dados-eja-matriculas/main/Salvador'
 
 
 class LeitorDeDados:
