@@ -93,7 +93,24 @@ class MatriculasSalvadorSexo:
                 matriculas_por_sexo_porcentagem[sexo][categoria] = str(matriculas_por_sexo_porcentagem[sexo][categoria]) + '%'        
                 
         return matriculas_por_sexo_porcentagem
+    
+    def get_percentual_total_por_sexo(self):
         
+        total_matriculas_por_sexo = self.get_total_matriculas_por_sexo()
+        
+        percentual_total_por_sexo = {
+            'Feminino': 0,
+            'Masculino': 0
+        }
+        
+        for sexo in total_matriculas_por_sexo:
+            percentual_total_por_sexo[sexo] = round((total_matriculas_por_sexo[sexo] / (total_matriculas_por_sexo['Feminino'] + total_matriculas_por_sexo['Masculino'])) * 100, 2)
+        
+        for sexo in percentual_total_por_sexo:
+            percentual_total_por_sexo[sexo] = str(percentual_total_por_sexo[sexo]) + '%'
+        
+        return percentual_total_por_sexo
+      
 matriculas = MatriculasSalvadorSexo(df)
 
-print(matriculas.get_matriculas_por_sexo_porcentagem())
+print(matriculas.get_percentual_total_por_sexo())
