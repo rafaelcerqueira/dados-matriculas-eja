@@ -151,8 +151,7 @@ class MatriculasSalvadorFaixaEtaria:
             total_matriculas_faixa_etaria_geral_porcentagem[c] = str(total_matriculas_faixa_etaria_geral_porcentagem[c]) + '%'
         
         return total_matriculas_faixa_etaria_geral_porcentagem
-        
-            
+
 
 
 matriculas = MatriculasSalvadorFaixaEtaria(df)
