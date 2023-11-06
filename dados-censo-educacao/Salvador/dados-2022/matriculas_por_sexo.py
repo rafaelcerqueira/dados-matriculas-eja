@@ -163,7 +163,8 @@ class MatriculasSalvadorSexo:
     
     
 matriculas = MatriculasSalvadorSexo(df)
-
+'''
 print(matriculas.get_percentual_total_por_sexo())
 print('----------------------------------------')
 print(matriculas.get_percentual_por_sexo_dependencia_administrativa())
+'''
