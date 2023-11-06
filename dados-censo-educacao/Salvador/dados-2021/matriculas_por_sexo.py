@@ -8,7 +8,7 @@ class MatriculasSalvadorSexo:
     
     def __init__(self, df):
         self.df = df
-    
+        
     def get_matriculas_por_sexo(self):
         
         matriculas_feminino = {
@@ -46,10 +46,11 @@ class MatriculasSalvadorSexo:
                     matriculas_feminino['Federal'] += self.df['Matrículas'][c]
                 elif self.df['Categoria 1'][c] == 'Masculino':
                     matriculas_masculino['Federal'] += self.df['Matrículas'][c]
-        
+                    
         return {'Feminino': matriculas_feminino, 'Masculino': matriculas_masculino}
     
     def get_total_matriculas_por_sexo(self):
+        
         total_matriculas_por_sexo = {
             'Feminino': 0,
             'Masculino': 0
@@ -63,65 +64,106 @@ class MatriculasSalvadorSexo:
         
         return total_matriculas_por_sexo
     
-    #mostra a porcentagem de matrículas de cada sexo por dependência administrativa.
-    def get_matriculas_por_sexo_porcentagem(self):
-        total_matriculas_por_sexo = self.get_total_matriculas_por_sexo()
+    def get_matriculas_por_sexo_por_dependencia_administrativa(self):
+        
+        #acessa o dicionario matriculas_feminino e matriculas_masculino em get_matriculas_por_sexo()
         matriculas_por_sexo = self.get_matriculas_por_sexo()
         
-        total_matriculas_por_sexo_porcentagem = {
-            'Feminino': {
-                'Estadual': 0,
-                'Municipal': 0,
-                'Privada': 0,
-                'Federal': 0
+        #cria um dicionario para armazenar as matriculas de cada sexo por dependencia administrativa
+        matriculas_por_sexo_por_dependencia_administrativa = {
+            'Estadual': {
+                'Feminino': 0,
+                'Masculino': 0
             },
-            'Masculino': {
-                'Estadual': 0,
-                'Municipal': 0,
-                'Privada': 0,
-                'Federal': 0
+            'Municipal': {
+                'Feminino': 0,
+                'Masculino': 0
+            },
+            'Privada': {
+                'Feminino': 0,
+                'Masculino': 0
+            },
+            'Federal': {
+                'Feminino': 0,
+                'Masculino': 0
             }
         }
         
-        for c in matriculas_por_sexo['Feminino']:
-            total_matriculas_por_sexo_porcentagem['Feminino'][c] = (matriculas_por_sexo['Feminino'][c] / total_matriculas_por_sexo['Feminino']) * 100
-            total_matriculas_por_sexo_porcentagem['Feminino'][c] = round(total_matriculas_por_sexo_porcentagem['Feminino'][c], 2)
+       #percorre o dicionario matriculas_feminino e verifica se a categoria é estadual, municipal, privada ou federal
+         #se for estadual, municipal, privada ou federal, soma a quantidade de matriculas de cada sexo
+        for sexo in matriculas_por_sexo:
+            for categoria in matriculas_por_sexo[sexo]:
+                if categoria == 'Estadual':
+                    matriculas_por_sexo_por_dependencia_administrativa['Estadual'][sexo] += matriculas_por_sexo[sexo][categoria]
+                elif categoria == 'Municipal':
+                    matriculas_por_sexo_por_dependencia_administrativa['Municipal'][sexo] += matriculas_por_sexo[sexo][categoria]
+                elif categoria == 'Privada':
+                    matriculas_por_sexo_por_dependencia_administrativa['Privada'][sexo] += matriculas_por_sexo[sexo][categoria]
+                elif categoria == 'Federal':
+                    matriculas_por_sexo_por_dependencia_administrativa['Federal'][sexo] += matriculas_por_sexo[sexo][categoria]
             
-        for c in matriculas_por_sexo['Masculino']:
-            total_matriculas_por_sexo_porcentagem['Masculino'][c] = (matriculas_por_sexo['Masculino'][c] / total_matriculas_por_sexo['Masculino']) * 100
-            total_matriculas_por_sexo_porcentagem['Masculino'][c] = round(total_matriculas_por_sexo_porcentagem['Masculino'][c], 2)
-        
-        
-        #adiciona o simbolo de porcentagem ao final de cada valor.
-        for c in total_matriculas_por_sexo_porcentagem['Feminino']:
-            total_matriculas_por_sexo_porcentagem['Feminino'][c] = str(total_matriculas_por_sexo_porcentagem['Feminino'][c]) + '%'
-        
-        for c in total_matriculas_por_sexo_porcentagem['Masculino']:
-            total_matriculas_por_sexo_porcentagem['Masculino'][c] = str(total_matriculas_por_sexo_porcentagem['Masculino'][c]) + '%'
-            
-        return total_matriculas_por_sexo_porcentagem
+                
+        return matriculas_por_sexo_por_dependencia_administrativa
     
-    #mostra a porcentagem total de matrículas de cada sexo.
-    def get_matriculas_por_sexo_porcentagem_total(self):
+    def get_percentual_por_sexo_dependencia_administrativa(self):
+        
+        #acessa o dicionario matriculas_por_sexo_por_dependencia_administrativa
+        matriculas_por_sexo_por_dependencia_administrativa = self.get_matriculas_por_sexo_por_dependencia_administrativa()
+        
+        #cria um dicionario para armazenar o percentual de matriculas de cada sexo por dependencia administrativa
+        percentual_por_sexo_dependencia_administrativa = {
+            'Estadual': {
+                'Feminino': 0,
+                'Masculino': 0
+            },
+            'Municipal': {
+                'Feminino': 0,
+                'Masculino': 0
+            },
+            'Privada': {
+                'Feminino': 0,
+                'Masculino': 0
+            },
+            'Federal': {
+                'Feminino': 0,
+                'Masculino': 0
+            }
+        }
+
+        #percorre o dicionario matriculas_por_sexo_por_dependencia_administrativa
+        for categoria in matriculas_por_sexo_por_dependencia_administrativa:
+            #soma a quantidade de matriculas de cada sexo
+            total = matriculas_por_sexo_por_dependencia_administrativa[categoria]['Feminino'] + matriculas_por_sexo_por_dependencia_administrativa[categoria]['Masculino']
+            #calcula o total de matriculas feminino, divide pelo total de matriculas e multiplica por 100
+            percentual_por_sexo_dependencia_administrativa[categoria]['Feminino'] = round((matriculas_por_sexo_por_dependencia_administrativa[categoria]['Feminino'] / total) * 100, 2)
+            #calcula o total de matriculas masculino, divide pelo total de matriculas e multiplica por 100
+            percentual_por_sexo_dependencia_administrativa[categoria]['Masculino'] = round((matriculas_por_sexo_por_dependencia_administrativa[categoria]['Masculino'] / total) * 100, 2)
+            #adiciona os valores em percentual_por_sexo_dependencia_administrativa
+            percentual_por_sexo_dependencia_administrativa[categoria]['Feminino'] = str(percentual_por_sexo_dependencia_administrativa[categoria]['Feminino']) + '%'
+            percentual_por_sexo_dependencia_administrativa[categoria]['Masculino'] = str(percentual_por_sexo_dependencia_administrativa[categoria]['Masculino']) + '%'            
+                
+        return percentual_por_sexo_dependencia_administrativa
+    
+    def get_percentual_total_por_sexo(self):
+        
         total_matriculas_por_sexo = self.get_total_matriculas_por_sexo()
         
-        total_matriculas_por_sexo_porcentagem_total = {
+        percentual_total_por_sexo = {
             'Feminino': 0,
             'Masculino': 0
         }
         
-        for c in total_matriculas_por_sexo:
-            total_matriculas_por_sexo_porcentagem_total[c] = (total_matriculas_por_sexo[c] / sum(total_matriculas_por_sexo.values())) * 100
-            total_matriculas_por_sexo_porcentagem_total[c] = round(total_matriculas_por_sexo_porcentagem_total[c], 2)
+        total = total_matriculas_por_sexo['Feminino'] + total_matriculas_por_sexo['Masculino']
+        percentual_total_por_sexo['Feminino'] = round((total_matriculas_por_sexo['Feminino'] / total) * 100, 2)
+        percentual_total_por_sexo['Masculino'] = round((total_matriculas_por_sexo['Masculino'] / total) * 100, 2)
+        percentual_total_por_sexo['Feminino'] = str(percentual_total_por_sexo['Feminino']) + '%'
+        percentual_total_por_sexo['Masculino'] = str(percentual_total_por_sexo['Masculino']) + '%'
         
-        #adiciona o simbolo de porcentagem ao final de cada valor.
-        for c in total_matriculas_por_sexo_porcentagem_total:
-            total_matriculas_por_sexo_porcentagem_total[c] = str(total_matriculas_por_sexo_porcentagem_total[c]) + '%'
-            
-        return total_matriculas_por_sexo_porcentagem_total
+        return percentual_total_por_sexo
     
     
-
 matriculas = MatriculasSalvadorSexo(df)
-print(matriculas.get_matriculas_por_sexo_porcentagem_total())
 
+print(matriculas.get_percentual_total_por_sexo())
+print('----------------------------------------')
+print(matriculas.get_percentual_por_sexo_dependencia_administrativa())
