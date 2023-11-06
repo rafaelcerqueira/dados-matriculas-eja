@@ -132,5 +132,5 @@ class MatriculasSalvadorSexo:
 
 matriculas = MatriculasSalvadorSexo(df=df)
 
-print(matriculas.get_matriculas_por_sexo_porcentagem_total())
+print(matriculas.get_matriculas_por_sexo_porcentagem())
 
