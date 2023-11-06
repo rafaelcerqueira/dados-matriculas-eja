@@ -21,7 +21,7 @@ class LeitorDeDados:
     
     def get_dados_sexo_csv(self):
 
-        df_sexo = pd.read_csv(url + '/dados-2018/matriculas-sexo-salvador.csv')
+        df_sexo = pd.read_csv(url + '/dados-2018/matriculas-sexo-salvador.csv', sep=';')
         
         return df_sexo
     
