@@ -197,4 +197,4 @@ class MatriculasSalvadorCorRaca:
 
 matriculas = MatriculasSalvadorCorRaca(df)
 
-print(matriculas.get_matriculas_raca_porcentagem_total())
+print(matriculas.get_total_matriculas_por_raca())
