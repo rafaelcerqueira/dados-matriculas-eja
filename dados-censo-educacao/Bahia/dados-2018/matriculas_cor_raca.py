@@ -206,4 +206,4 @@ class MatriculasCorRacaBahia:
 
 matriculas = MatriculasCorRacaBahia(df)
 
-print(matriculas.get_total_matriculas_por_raca())
+print(matriculas.get_porcentagem_matriculas_dependencia_administrativa())

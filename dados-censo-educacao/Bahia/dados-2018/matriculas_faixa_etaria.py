@@ -170,4 +170,4 @@ class MatriculasFaixaEtariaBahia:
 
 matriculas = MatriculasFaixaEtariaBahia(df)
 
-print(matriculas.get_total_matriculas_faixa_etaria())
+print(matriculas.get_percentual_matriculas_faixa_etaria())

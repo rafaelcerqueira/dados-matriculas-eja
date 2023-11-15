@@ -170,8 +170,10 @@ class MatriculasPorSexoBahia:
         return percentual_total_por_sexo
 
 
-matriculas = MatriculasPorSexoBahia(df)
+# exportar para um arquivo csv
 
-print(matriculas.get_percentual_total_por_sexo())
-print('----------------------------------------')
-print(matriculas.get_percentual_por_sexo_dependencia_administrativa())
+matriculas_por_sexo_bahia = MatriculasPorSexoBahia(df)
+matriculas_por_sexo = matriculas_por_sexo_bahia.get_matriculas_por_sexo()
+matriculas_por_sexo_por_dependencia_administrativa = matriculas_por_sexo_bahia.get_matriculas_por_sexo_por_dependencia_administrativa()
+percentual_por_sexo_dependencia_administrativa = matriculas_por_sexo_bahia.get_percentual_por_sexo_dependencia_administrativa()
+percentual_total_por_sexo = matriculas_por_sexo_bahia.get_percentual_total_por_sexo()

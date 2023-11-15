@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Salvador/dados-2022"
+    ]
+}

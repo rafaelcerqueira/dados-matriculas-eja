@@ -94,13 +94,13 @@ class MatriculasSalvadorSexo:
         for sexo in matriculas_por_sexo:
             for categoria in matriculas_por_sexo[sexo]:
                 if categoria == 'Estadual':
-                    matriculas_por_sexo_por_dependencia_administrativa['Estadual'][sexo] += matriculas_por_sexo[sexo][categoria]
+                    matriculas_por_sexo_por_dependencia_administrativa['Estadual'][sexo] += round(matriculas_por_sexo[sexo][categoria], 2)
                 elif categoria == 'Municipal':
-                    matriculas_por_sexo_por_dependencia_administrativa['Municipal'][sexo] += matriculas_por_sexo[sexo][categoria]
+                    matriculas_por_sexo_por_dependencia_administrativa['Municipal'][sexo] += round(matriculas_por_sexo[sexo][categoria], 2)
                 elif categoria == 'Privada':
-                    matriculas_por_sexo_por_dependencia_administrativa['Privada'][sexo] += matriculas_por_sexo[sexo][categoria]
+                    matriculas_por_sexo_por_dependencia_administrativa['Privada'][sexo] += round(matriculas_por_sexo[sexo][categoria], 2)
                 elif categoria == 'Federal':
-                    matriculas_por_sexo_por_dependencia_administrativa['Federal'][sexo] += matriculas_por_sexo[sexo][categoria]
+                    matriculas_por_sexo_por_dependencia_administrativa['Federal'][sexo] += round(matriculas_por_sexo[sexo][categoria], 2)
             
                 
         return matriculas_por_sexo_por_dependencia_administrativa
@@ -162,8 +162,17 @@ class MatriculasSalvadorSexo:
         return percentual_total_por_sexo
     
     
-matriculas = MatriculasSalvadorSexo(df)
+matriculas = MatriculasSalvadorSexo(df=df)
 
-print(matriculas.get_percentual_total_por_sexo())
-print('----------------------------------------')
+print('--------------------------------------------------------------')
+print(matriculas.get_matriculas_por_sexo())
+print('--------------------------------------------------------------')
+print(matriculas.get_total_matriculas_por_sexo())
+print('--------------------------------------------------------------')
+print(matriculas.get_matriculas_por_sexo_por_dependencia_administrativa())
+print('--------------------------------------------------------------')
 print(matriculas.get_percentual_por_sexo_dependencia_administrativa())
+print('--------------------------------------------------------------')
+print(matriculas.get_percentual_total_por_sexo())
+print('--------------------------------------------------------------')
+
