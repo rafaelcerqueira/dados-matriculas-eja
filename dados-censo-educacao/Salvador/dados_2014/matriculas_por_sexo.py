@@ -164,6 +164,54 @@ class MatriculasSalvadorSexo:
     
 matriculas = MatriculasSalvadorSexo(df)
 
-print(matriculas.get_percentual_total_por_sexo())
-print('----------------------------------------')
-print(matriculas.get_percentual_por_sexo_dependencia_administrativa())
+def soma_total():
+    matriculas = MatriculasSalvadorSexo(df)
+    matriculas_por_sexo = matriculas.get_matriculas_por_sexo()
+    total = 0
+    total_feminino = 0
+    total_masculino = 0
+    for sexo in matriculas_por_sexo:
+        for categoria in matriculas_por_sexo[sexo]:
+            total += matriculas_por_sexo[sexo][categoria]
+    
+    for c in matriculas_por_sexo:
+        if c == 'Feminino':
+            for categoria in matriculas_por_sexo[c]:
+                total_feminino += matriculas_por_sexo[c][categoria]
+        elif c == 'Masculino':
+            for categoria in matriculas_por_sexo[c]:
+                total_masculino += matriculas_por_sexo[c][categoria]
+    
+    return 'Feminino:', total_feminino, 'Masculino:', total_masculino, 'Total:', total
+
+
+matriculas = MatriculasSalvadorSexo(df)
+
+
+print('2014______________________________________________________')
+# tranforme matriculas.get_matriculas_por_sexo() em um dataframe
+df_matriculas_por_sexo = pd.DataFrame(matriculas.get_matriculas_por_sexo())
+# imprime o dataframe
+print(df_matriculas_por_sexo)
+
+print('______________________________________________________')
+
+# repita o processo para as outras funcoes
+df_total_matriculas_por_sexo = pd.DataFrame(matriculas.get_total_matriculas_por_sexo(), index=[0])
+print(df_total_matriculas_por_sexo)
+print('______________________________________________________')
+
+df_matriculas_por_sexo_por_dependencia_administrativa = pd.DataFrame(matriculas.get_matriculas_por_sexo_por_dependencia_administrativa())
+print(df_matriculas_por_sexo_por_dependencia_administrativa)
+print('______________________________________________________')
+
+df_percentual_por_sexo_dependencia_administrativa = pd.DataFrame(matriculas.get_percentual_por_sexo_dependencia_administrativa())
+print(df_percentual_por_sexo_dependencia_administrativa)
+print('______________________________________________________')
+
+df_percentual_total_por_sexo = pd.DataFrame(matriculas.get_percentual_total_por_sexo(), index=[0])
+print(df_percentual_total_por_sexo)
+print('______________________________________________________')
+
+print(soma_total())
+print('______________________________________________________')
